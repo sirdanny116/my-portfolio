@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Projects | Salami Onimisi Daniel</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        /* =========================
+           PROJECT PAGE
+        ========================= */
+
+        .projects-page {
+            min-height: 100vh;
+            padding: 90px 7%;
+        }
+
+        .projects-page-header {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+
+        .projects-page-header p {
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .projects-page-header h1 {
+            font-size: clamp(40px, 6vw, 65px);
+            margin-bottom: 15px;
+        }
+
+        .projects-page-header h1 span {
+            color: var(--gold);
+        }
+
+        .projects-page-header > div {
+            color: var(--text);
+            max-width: 600px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           CATEGORY BUTTONS
+        ========================= */
+
+        .project-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 50px;
+        }
+
+        .category-btn {
+            padding: 12px 24px;
+
+            background: transparent;
+            color: var(--text);
+
+            border: 1px solid #333;
+            border-radius: 8px;
+
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+
+            transition: 0.3s ease;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+        }
+
+
+        /* =========================
+           PROJECT GRID
+        ========================= */
+
+        .all-projects-grid {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+
+        /* =========================
+           PROJECT ITEM
+        ========================= */
+
+        .project-item {
+            background: var(--card);
+            border: 1px solid #292929;
+            border-radius: 15px;
+            overflow: hidden;
+
+            transition: 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-7px);
+            border-color: var(--gold);
+        }
+
+        .project-item.hidden {
+            display: none;
+        }
+
+        .project-item-image {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .project-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s ease;
+        }
+
+        .project-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-item-info {
+            padding: 25px;
+        }
+
+        .project-item-info h2 {
+            font-size: 25px;
+            margin-bottom: 5px;
+        }
+
+        .project-category {
+            display: inline-block;
+
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: bold;
+
+            margin-bottom: 12px;
+        }
+
+        .project-item-info p {
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .project-item-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .project-item-buttons a {
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-home {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .back-home a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            color: var(--gold);
+
+            transition: 0.3s ease;
+        }
+
+        .back-home a:hover {
+            transform: translateX(-5px);
+        }
+
+
+        /* =========================
+           LIGHT MODE
+        ========================= */
+
+        body.light-mode .projects-page {
+            background: #f5f5f5;
+        }
+
+        body.light-mode .projects-page-header h1 {
+            color: #111;
+        }
+
+        body.light-mode .projects-page-header > div {
+            color: #555;
+        }
+
+        body.light-mode .category-btn {
+            color: #333;
+            border-color: #ccc;
+        }
+
+        body.light-mode .category-btn:hover,
+        body.light-mode .category-btn.active {
+            color: #000;
+            border-color: var(--gold);
+        }
+
+        body.light-mode .project-item {
+            background: #fff;
+            border-color: #ddd;
+        }
+
+        body.light-mode .project-item-info h2 {
+            color: #111;
+        }
+
+        body.light-mode .project-item-info p {
+            color: #555;
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .projects-page {
+                padding: 70px 5%;
+            }
+
+            .all-projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .projects-page {
+                padding: 50px 20px;
+            }
+
+            .projects-page-header h1 {
+                font-size: 40px;
+            }
+
+            .project-categories {
+                gap: 8px;
+            }
+
+            .category-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+
+            .project-item-image {
+                height: 220px;
+            }
+
+            .project-item-buttons {
+                flex-direction: column;
+            }
+
+            .project-item-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            Dannystyles
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="index.html#home">Home</a>
+
+            <a href="index.html#about">About</a>
+
+            <a href="projects.html" class="active">Projects</a>
+
+            <a href="index.html#skills">Skills</a>
+
+            <a href="index.html#tools">Tools</a>
+
+            <a href="index.html#contact">Contact</a>
+
+        </nav>
+
+
+        <div class="nav-buttons">
+
+            <button
+                id="themeToggle"
+                aria-label="Toggle light and dark mode"
+            >
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <a href="index.html#contact" class="talk-btn">
+                Let's Talk
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         PROJECT PAGE
+    ========================= -->
+
+    <main class="projects-page">
+
+
+        <!-- BACK -->
+
+        <div class="back-home">
+
+            <a href="index.html#projects">
+                ← Back to Portfolio
+            </a>
+
+        </div>
+
+
+        <!-- HEADER -->
+
+        <div class="projects-page-header">
+
+            <p>MY WORK</p>
+
+            <h1>
+                All <span>Projects</span>
+            </h1>
+
+            <div>
+                Explore my design and development projects,
+                from UI/UX experiences to responsive websites.
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CATEGORIES
+        ========================= -->
+
+        <div class="project-categories">
+
+            <button
+                class="category-btn active"
+                data-category="all"
+            >
+                All Design
+            </button>
+
+            <button
+                class="category-btn"
+                data-category="uiux"
+            >
+                UI/UX
+            </button>
+
+            <button
+                class="category-btn"
+                data-category="web"
+            >
+                Web Development
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             PROJECTS
+        ========================= -->
+
+        <div class="all-projects-grid">
+
+
+            <!-- SAVANNA TABLE -->
+
+            <article
+                class="project-item"
+                data-category="web"
+            >
+
+                <div class="project-item-image">
+
+                    <img
+                        src="savanna-table.png"
+                        alt="Savanna Table website"
+                    >
+
+                </div>
+
+                <div class="project-item-info">
+
+                    <span class="project-category">
+                        Web Development
+                    </span>
+
+                    <h2>
+                        Savanna Table
+                    </h2>
+
+                    <p>
+                        A modern Nigerian restaurant website with
+                        responsive design and a smooth user experience.
+                    </p>
+
+                    <div class="project-item-buttons">
+
+                        <a
+                            href="case-study/case-study.html"
+                            class="primary-btn"
+                        >
+                            Case Study
+                        </a>
+
+                        <a
+                            href="https://sirdanny116.github.io/Savanna-table/"
+                            target="_blank"
+                            class="secondary-btn"
+                        >
+                            Live Website ↗
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- STYLEZSUB -->
+
+            <article
+                class="project-item"
+                data-category="uiux"
+            >
+
+                <div class="project-item-image">
+
+                    <img
+                        src="stylezsub.png"
+                        alt="StylezSUB application"
+                    >
+
+                </div>
+
+                <div class="project-item-info">
+
+                    <span class="project-category">
+                        UI/UX
+                    </span>
+
+                    <h2>
+                        StylezSUB
+                    </h2>
+
+                    <p>
+                        A subscription management experience designed
+                        to help users organize and manage their services.
+                    </p>
+
+                    <div class="project-item-buttons">
+
+                        <a
+                            href="stylezsub/stylezsub-case-study.html"
+                            class="primary-btn"
+                        >
+                            Case Study
+                        </a>
+
+                        <a
+                            href="https://sirdanny116.github.io/stylezsub/"
+                            target="_blank"
+                            class="secondary-btn"
+                        >
+                            Live App ↗
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- GIVERS HANDS -->
+
+            <article
+                class="project-item"
+                data-category="web"
+            >
+
+                <div class="project-item-image">
+
+                    <img
+                        src="givers-hands-home.png"
+                        alt="Givers Hands Foundation website"
+                    >
+
+                </div>
+
+                <div class="project-item-info">
+
+                    <span class="project-category">
+                        Web Development
+                    </span>
+
+                    <h2>
+                        Givers Hands NGO
+                    </h2>
+
+                    <p>
+                        A modern non-profit website connecting communities
+                        with education, clean water and empowerment initiatives.
+                    </p>
+
+                    <div class="project-item-buttons">
+
+                        <a
+                            href="givers-hands/givers-hands-case-study.html"
+                            class="primary-btn"
+                        >
+                            Case Study
+                        </a>
+                           <a
+                            href="https://sirdanny116.github.io/givers-hands/"
+                            target="_blank"
+                            class="secondary-btn"
+                        >
+                            Live Website ↗
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- ADD FUTURE PROJECTS HERE -->
+
+            <!--
+            <article
+                class="project-item"
+                data-category="uiux"
+            >
+
+                <div class="project-item-image">
+
+                    <img
+                        src="your-project.png"
+                        alt="Your project"
+                    >
+
+                </div>
+
+                <div class="project-item-info">
+
+                    <span class="project-category">
+                        UI/UX
+                    </span>
+
+                    <h2>
+                        Your Project
+                    </h2>
+
+                    <p>
+                        Project description goes here.
+                    </p>
+
+                    <div class="project-item-buttons">
+
+                        <a
+                            href="#"
+                            class="primary-btn"
+                        >
+                            View Project
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+            -->
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Salami Onimisi Daniel. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           CATEGORY FILTER
+        ========================= */
+
+        const categoryButtons =
+            document.querySelectorAll(".category-btn");
+
+        const projectItems =
+            document.querySelectorAll(".project-item");
+
+
+        categoryButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                /* Remove active state */
+
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+
+                /* Add active state */
+
+                button.classList.add("active");
+
+
+                /* Selected category */
+
+                const selectedCategory =
+                    button.dataset.category;
+
+
+                /* Filter projects */
+
+                projectItems.forEach(project => {
+
+                    const projectCategory =
+                        project.dataset.category;
+
+
+                    if (
+                        selectedCategory === "all" ||
+                        selectedCategory === projectCategory
+                    ) {
+
+                        project.classList.remove("hidden");
+
+                    } else {
+
+                        project.classList.add("hidden");
+
+                    }
+
+                });
+
+            });
+
+        });
+
+
+        /* =========================
+           DARK / LIGHT MODE
+        ========================= */
+
+        const themeToggle =
+            document.getElementById("themeToggle");
+
+        const themeIcon =
+            themeToggle.querySelector("i");
+
+
+        themeToggle.addEventListener("click", () => {
+
+            document.body.classList.toggle("light-mode");
+
+
+            if (
+                document.body.classList.contains("light-mode")
+            ) {
+
+                themeIcon.classList.remove("fa-moon");
+
+                themeIcon.classList.add("fa-sun");
+
+            } else {
+
+                themeIcon.classList.remove("fa-sun");
+
+                themeIcon.classList.add("fa-moon");
+
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
